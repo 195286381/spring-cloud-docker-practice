@@ -17,6 +17,8 @@
     <modules>
         <module>microservice-simple-provider-user</module>
         <module>microservice-simple-consumer-movie</module>
+        <module>microservice-discovery-eureka</module>
+        <module>microservice-discovery-eureka-ha</module>
     </modules>
 
 
@@ -26,7 +28,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Edgware.SR6</version>
+                <version>Edgware.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

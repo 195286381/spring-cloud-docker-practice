@@ -1,7 +1,9 @@
-server:
-  port: 8000
-
 spring:
+  profiles:
+    active: user-8000
+  application:
+      name: microservice-provider-user
+
   jpa:
     generate-ddl: false
     show-sql: true
@@ -23,3 +25,26 @@ logging:
 management:
   security:
     enabled: false
+
+
+### eureka 客户端配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://root:password123@localhost:8762/eureka/,http://root:password123@localhost:8761/eureka/
+    instance:
+      prefer-ip-address: true
+
+---
+spring:
+  profiles: user-8000
+
+server:
+  port: 8000
+
+---
+spring:
+  profiles: user-8001
+
+server:
+  port: 8001
