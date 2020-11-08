@@ -1,14 +1,9 @@
 server:
-  port: 8010
-
+  port: 8040
 
 spring:
   application:
-    name: microservice-consumer-movie
-
-management:
-  security:
-    enabled: false
+    name: microservice-gateway-zuul
 
 ### eureka 客户端配置
 eureka:

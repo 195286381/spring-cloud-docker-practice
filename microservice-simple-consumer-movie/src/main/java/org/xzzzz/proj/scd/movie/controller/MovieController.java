@@ -1,5 +1,6 @@
 package org.xzzzz.proj.scd.movie.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -11,6 +12,7 @@ import org.xzzzz.proj.scd.movie.entity.User;
 import org.xzzzz.proj.scd.movie.service.UserFeignClient;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author xzzzz
@@ -33,8 +35,32 @@ public class MovieController {
         return userFeignClient.findUserById(id);
     }
 
+    @HystrixCommand(fallbackMethod = "findByUserFailFallback")
+    @GetMapping("/user/fallback/{id}")
+    public User findByUserFail(@PathVariable("id") Long id) {
+        try {
+            TimeUnit.DAYS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return userFeignClient.findUserById(id);
+    }
+
     @GetMapping("/user-instance")
     public List<ServiceInstance> showInfo() {
         return discoveryClient.getInstances("microservice-provider-user");
     }
+
+    /**
+     * 获取用户信息失败的后备方法.
+     * @param id
+     * @return
+     */
+    public User findByUserFailFallback(Long id) {
+        User user = new User();
+        user.setId(-1L);
+        user.setName("defaultName");
+        return user;
+    }
+
 }

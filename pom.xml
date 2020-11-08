@@ -19,6 +19,9 @@
         <module>microservice-simple-consumer-movie</module>
         <module>microservice-discovery-eureka</module>
         <module>microservice-discovery-eureka-ha</module>
+        <module>microservice-hystrix-dashboard</module>
+        <module>microservice-hystrix-turbine</module>
+        <module>microservice-getway-zuul</module>
     </modules>
 
 
