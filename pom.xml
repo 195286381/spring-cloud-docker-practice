@@ -22,6 +22,7 @@
         <module>microservice-hystrix-dashboard</module>
         <module>microservice-hystrix-turbine</module>
         <module>microservice-getway-zuul</module>
+        <module>microservice-config-server</module>
     </modules>
 
 
